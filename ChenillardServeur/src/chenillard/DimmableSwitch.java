@@ -1,45 +1,59 @@
-package serveur;
+package chenillard;
 
 public class DimmableSwitch {
 	String name;
 	String address;
-	int value;
+	int vitesse;
+	boolean etat;
+	String ordre;
+
 	public DimmableSwitch() {
 	}
-	public DimmableSwitch(String name, String address, int value) {
+
+	public DimmableSwitch(boolean etat, int vitesse, String ordre) {
 		super();
-		this.name = name;
-		this.address = address;
-		this.value = value;
+		this.ordre = ordre;
+		this.vitesse = vitesse;
+		this.etat = etat;
 	}
-	public String getName() {
-		return name;
+
+
+
+
+	public String getOrdre() {
+		return ordre;
 	}
-	public void setName(String name) {
-		this.name = name;
+
+	public void setOrdre(String ordre) {
+		this.ordre = ordre;
 	}
-	public String getAddress() {
-		return address;
+
+	public int getVitesse() {
+		return vitesse;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+
+	public void setVitesse(int vitesse) {
+		this.vitesse = vitesse;
 	}
-	public int getValue() {
-		return value;
+
+	public boolean getEtat() {
+		return etat;
 	}
-	public void setValue(int value) {
-		this.value = value;
+	
+	public void setEtat(boolean etat) {
+		this.etat = etat;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((address == null) ? 0 :
-			address.hashCode());
+		result = prime * result + ((address == null) ? 0 : address.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + value;
+		result = prime * result + vitesse;
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -59,10 +73,9 @@ public class DimmableSwitch {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (value != other.value)
+		if (vitesse != other.vitesse)
 			return false;
 		return true;
 	}
 
 }
-

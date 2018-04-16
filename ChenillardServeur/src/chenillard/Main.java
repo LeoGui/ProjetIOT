@@ -1,4 +1,4 @@
-package serveur;
+package chenillard;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -9,12 +9,12 @@ import org.glassfish.jersey.servlet.ServletContainer;
 
 public class Main {
 
+	
     public static void main(String[] args) {
 
         Server server = new Server(8080);
         
-        ServletContextHandler ctx = 
-                new ServletContextHandler(ServletContextHandler.NO_SESSIONS);
+        ServletContextHandler ctx = new ServletContextHandler(ServletContextHandler.NO_SESSIONS);
                 
         ctx.setContextPath("/");
         server.setHandler(ctx);
@@ -24,6 +24,7 @@ public class Main {
         serHol.setInitParameter("jersey.config.server.provider.packages", 
                 "chenillard");
 
+        
         try {
             server.start();
             server.join();

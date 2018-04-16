@@ -9,10 +9,10 @@ public class MyThread extends Thread{
 	public ProcessCommunicator pc;
 	public boolean etat;
 	public boolean ordre;
-	public int speed;
+	public static int speed;
 	public int j = 0;
-	public String [] testordre = {"1","2","3","4"};
-	public String lampe;
+	public static String [] testordre = {"1","2","3","4"};
+	public static String lampe;
 
 	public MyThread(Chenillard chen,ProcessCommunicator pc) {
 		this.chen = chen;
@@ -27,19 +27,26 @@ public class MyThread extends Thread{
 			while(etat !=false) {
 				for (int i =0; i<4;i++) {
 					if (i == 0 && etat == true) {
+						etat = chen.GetEtat();
+						ordre = chen.getOrdre();
+						speed = chen.getSpeed();
+						
 						if(ordre != true) {
 							lampe = testordre[i];
 						}
 						Lampe();
+						
 						pc.write(new GroupAddress("0/0/" + lampe),true);
 						Thread.sleep(speed * 100);
 						pc.write(new GroupAddress("0/0/" + lampe),false);
-						etat = chen.GetEtat();
-						ordre = chen.getOrdre();
-						speed = chen.getSpeed();
+						
 					}
 
 					if (i == 1 && etat == true) {
+						etat = chen.GetEtat();
+						ordre = chen.getOrdre();
+						speed = chen.getSpeed();
+						
 						if(ordre != true) {
 							lampe = testordre[i];
 						}
@@ -47,13 +54,16 @@ public class MyThread extends Thread{
 						pc.write(new GroupAddress("0/0/" + lampe),true);
 						Thread.sleep(speed * 100);
 						pc.write(new GroupAddress("0/0/" + lampe),false);
-						etat = chen.GetEtat();
-						ordre = chen.getOrdre();
-						speed = chen.getSpeed();
+						
 					}
 
 
 					if (i == 2 && etat == true) {
+						
+						etat = chen.GetEtat();
+						ordre = chen.getOrdre();
+						speed = chen.getSpeed();
+						
 						if(ordre != true) {
 							lampe = testordre[i];
 						}
@@ -61,12 +71,15 @@ public class MyThread extends Thread{
 						pc.write(new GroupAddress("0/0/" + lampe),true);
 						Thread.sleep(speed * 100);
 						pc.write(new GroupAddress("0/0/" + lampe),false);
-						etat = chen.GetEtat();
-						ordre = chen.getOrdre();
-						speed = chen.getSpeed();
+						
 					}
 
 					if (i == 3 && etat == true) {
+						
+						etat = chen.GetEtat();
+						ordre = chen.getOrdre();
+						speed = chen.getSpeed();
+						
 						if(ordre != true) {
 							lampe = testordre[i];
 						}
@@ -74,9 +87,7 @@ public class MyThread extends Thread{
 						pc.write(new GroupAddress("0/0/" + lampe),true);
 						Thread.sleep(speed * 100);
 						pc.write(new GroupAddress("0/0/" + lampe),false);
-						etat = chen.GetEtat();
-						ordre = chen.getOrdre();
-						speed = chen.getSpeed();
+						
 					}
 				}
 
