@@ -7,8 +7,7 @@ public class DimmableSwitch {
 	boolean etat;
 	String ordre;
 
-	public DimmableSwitch() {
-	}
+
 
 	public DimmableSwitch(boolean etat, int vitesse, String ordre) {
 		super();

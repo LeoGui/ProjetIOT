@@ -65,7 +65,6 @@ public class Chenillard {
 	@POST
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getConnect() {
-		System.out.println("test");
 		chen.connection();
 		String connect = "Vous etes connectés";
 		return connect;
@@ -82,7 +81,7 @@ public class Chenillard {
 
 	@Path("post")
 	@POST
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public DimmableSwitch postDimmableSwitch(MultivaluedMap<String, String> switchParams) {
 		
