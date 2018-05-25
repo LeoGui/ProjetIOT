@@ -20,9 +20,9 @@ public class MainActivity extends AppCompatActivity {
         private static final String TAG = "AndroidRESTClientActivity";
         /** Called when the activity is first created. */
         private WebServiceTask wstPost2;
-    private WebServiceTask wstPost1;
+        private WebServiceTask wstPost1;
 
-    private boolean etat = false;
+        private boolean etat = false;
 
 
     @Override
@@ -31,20 +31,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //On relie l'intent
-        Intent intent = getIntent();
 
-
-        // Connection REST
+        // Innitialisation Bouton
+        // start
         Button start = (Button)findViewById(R.id.start);
-        start.setOnClickListener(START);
         //stop
         Button stop = (Button)findViewById(R.id.stop);
+
+        //Listerner sur les boutons
+        start.setOnClickListener(START);
         stop.setOnClickListener(STOP);
-        //Changer
     }
 
-    //reaction aux boutons Start et Stop.
+    //reaction aux boutons
     public View.OnClickListener START = new View.OnClickListener(){
         @Override
         public void onClick(View v) {
@@ -76,27 +75,29 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-
-          public void postConnection(){
-               WebServiceTask wstPost1 = new WebServiceTask(WebServiceTask.GET_TASK, this, "GETting data...");
+        //JSON vide pour la connection au serveur
+        public void postConnection(){
+               WebServiceTask wstPost1 = new WebServiceTask(WebServiceTask.POST_TASK, this, "GETting data...");
 
                wstPost2.execute(new String[]{ SERVICE_URL });
 
          }
-        //post et ajout des valeurs dans le tableau 'Json'
-        public void postData(View v) {
-                WebServiceTask wstPost2 = new WebServiceTask(WebServiceTask.GET_TASK, this, "GETting data...");
 
-            //on récupere les EditText choisi par l'utilisateur
+
+        //Envoie des requètes selon les valeurs selectionnées par l'utilisateur
+        public void postData(View v) {
+                WebServiceTask wstPost2 = new WebServiceTask(WebServiceTask.POST_TASK, this, "GETting data...");
+
+                //Récupération des EditText choisis par l'utilisateur
                 EditText Mavitesse = (EditText) findViewById(R.id.vitesse);
                 EditText Monordre = (EditText) findViewById(R.id.ordre);
 
-                //On convertit chaque EditText
+                //Conversion de chaque EditText
                 String vit = Mavitesse.getText().toString();
                 String ord = Monordre.getText().toString();
                 String etatChen = "";
 
-                //Selon la valeur de l'état : T ou F, on envoie une String dans le tableau 'Json'
+                //Si un des champs (vitesse ou ordre) est vide -> erreur
                 if (vit.equals("") || ord.equals("") ) {
                         Toast.makeText(this, "Please enter in all required fields.",
                                 Toast.LENGTH_LONG).show();
@@ -108,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
                 wstPost2.addNameValuePair("ordre", ord);
 
                 //Ajout de la variable etat dans le tableau 'Json'
+
                 if (etat==false) {
                     wstPost2.addNameValuePair("state","false");
                     Toast.makeText(this, "false",

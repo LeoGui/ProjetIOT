@@ -32,7 +32,7 @@ public class ConnectionPage extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
-            //Main.postConnection();
+            Main.postConnection();
             startActivity();
 
         }

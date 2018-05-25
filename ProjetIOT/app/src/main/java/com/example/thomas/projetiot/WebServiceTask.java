@@ -104,6 +104,8 @@ public class WebServiceTask extends AsyncTask<String, Integer, String> {
     protected void onPostExecute(String response) {
         this.mContext.handleResponse(response);
         pDlg.dismiss();
+        //à chaque post, on vide le Json
+        Json.clear();
     }
 
     // Establish connection and socket (data retrieval) timeouts
@@ -122,10 +124,10 @@ public class WebServiceTask extends AsyncTask<String, Integer, String> {
             switch (taskType) {
                 case POST_TASK:
                     HttpPost httppost = new HttpPost(url);
-// Add parameters
                     httppost.setEntity(new UrlEncodedFormEntity(Json));
                     response = httpclient.execute(httppost);
                     break;
+
                 case GET_TASK:
                     HttpGet httpget = new HttpGet(url);
                     response = httpclient.execute(httpget);
